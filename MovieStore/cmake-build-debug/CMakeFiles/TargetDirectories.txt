@@ -1,0 +1,3 @@
+/Users/noraosmanova/EverythingCoding/MovieStore/cmake-build-debug/CMakeFiles/MovieStore.dir
+/Users/noraosmanova/EverythingCoding/MovieStore/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/noraosmanova/EverythingCoding/MovieStore/cmake-build-debug/CMakeFiles/rebuild_cache.dir
