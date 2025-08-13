@@ -9,8 +9,24 @@
 // ---------------------------------------------------------------------------
 //
 
+#include <string>
+#include <queue>
+
+using namespace std;
+
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
-#endif //CUSTOMER_H
-//
+class Customer {
+public:
+bool addTransaction(string);        // Creates a transaction based on transaction type, returns true if successful, false if unsuccessful.
+void reportHistory();               // Prints chronological listing of rental history for current customer.
+
+private:
+int id;                             // Customer's ID, as provided in the transactions.
+string name;                        // Customer's name, as provided in the transactions.
+queue<string> history;              // History of rented movies.
+queue<string> currentRentals;       // Collection of currently rented titles.
+};
+
+#endif CUSTOMER_H
