@@ -6,6 +6,7 @@ using namespace std;
 
 int main() {
     Store store;
+    string line;
 
     // Load movies
     ifstream movieFile("data4movies.txt");
@@ -13,32 +14,52 @@ int main() {
         cerr << "Error opening movie data file." << endl;
         return 1;
     }
-    /////////////////////////////////////////
-    // Logic to read movie data and populate the inventory
+    
+    while (getline(movieFile, line)) {
+        if (line.empty()) continue; // Skip empty lines
+
+        // Parse the line to create a Movie object
+        // Example: "F, 123, Funny Movie, 2020, Actor Name"
+        // Logic to parse and create a movie object based on the genre
+        // and add it to the inventory
+    }
+    movieFile.close();
     /////////////////////////////////////////
 
-    movieFile.close();
     // Load customers
     ifstream customerFile("data4customers.txt");
     if (!customerFile) {
         cerr << "Error opening customer data file." << endl;
         return 1;
     }
-    /////////////////////////////////////////
-    // Logic to read customer data and populate the customers hash table
+    
+    while (getline(customerFile, line)) {
+        if (line.empty()) continue; // Skip empty lines
+
+        // Parse the line to create a Customer object
+        // Example: "123, John Doe, 555-1234"
+        // Logic to parse and create a customer object and add it to the hash table
+    }
+    customerFile.close();
     /////////////////////////////////////////
 
-    customerFile.close();
     // Process commands
     ifstream commandFile("data4commands.txt");
     if (!commandFile) {
         cerr << "Error opening command data file." << endl;
         return 1;
     }
-    //////////////////////////////////////////
-    // Logic to read commands and perform transactions
+    
+    while (getline(commandFile, line)) {
+        if (line.empty()) continue; // Skip empty lines
+
+        // Parse the command line
+        // Example: "B 123 D Comedy, Funny Movie, 2020"
+        // Logic to parse the command and perform the corresponding transaction
+        // using TransactionFactory to create the appropriate transaction object
+    }
+    commandFile.close();
     //////////////////////////////////////////
 
-    commandFile.close();
     return 0;
 }
