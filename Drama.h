@@ -15,12 +15,14 @@
 #include "Movie.h"
 #include "MovieFactory.h"
 
-class Drama{
+class Drama : public Movie {
 public:
     void operator<(Movie);
     void operator==(Movie);
-    void display();             //displays the information of comedy class movie
+    void display();
     void processData();
+    void borrow();
+    void returnMovie();
 private:
     std::string majorActorName;
     int releaseDate;

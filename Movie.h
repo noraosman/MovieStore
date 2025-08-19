@@ -16,16 +16,16 @@
 
 class Movie{
 public:
-    void operator<(Movie);
-    void operator==(Movie);
-    void display();
-    void processData();
-    void borrow();
-    void returnMovie();
+    virtual void operator<(Movie) = 0;
+    virtual void operator==(Movie) = 0;
+    virtual void display() = 0;
+    virtual void processData() = 0;
+    virtual void borrow() = 0;
+    virtual void returnMovie() = 0;
 private:
     int stock;
     std::string director;
     std::string title;
     int year;
 };
-#endif MOVIE_H
+#endif

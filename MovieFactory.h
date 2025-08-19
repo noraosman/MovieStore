@@ -13,21 +13,20 @@
 #ifndef MOVIEFACTORY_H
 #define MOVIEFACTORY_H
 
-#include <string>
-#include "Movie.h"
+#include "Comedy.h"
+#include "Drama.h"
+#include "Classic.h"
 
-
-// Parses lines from data4Movies.txt
-// and gives the correct movie subtype
 class MovieFactory{
 public:
     enum class MovieGenre {
         Comedy,
         Drama,
-        Classics
+        Classic
     };
 
-    Movie static createMovie(MovieGenre);        // Returns an enum checked movie.
+    static Movie* createMovie(MovieGenre type);        // Returns an enum checked movie.
 private:
 };
-#endif MOVIEFACTORY_H
+
+#endif
