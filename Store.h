@@ -20,15 +20,15 @@
 #include "Customer.h"
 #include <string>
 
-class MovieStore{
+class Store{
 private:
     HashTable customers;        //stores customers keyed by ID
     Inventory inventory;         //Stores and manages movie collection
 
 public:
     // Constructor & Destructor
-    MovieStore();
-    ~MovieStore();
+    Store();
+    ~Store();
 
     // load Data
     void loadMovie();

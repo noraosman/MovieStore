@@ -16,6 +16,8 @@
 
 class Movie{
 public:
+    virtual ~Movie() = default; // Virtual destructor for proper cleanup of derived classes
+
     virtual void operator<(Movie) = 0;
     virtual void operator==(Movie) = 0;
     virtual void display() = 0;
