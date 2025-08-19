@@ -10,23 +10,26 @@
 // ---------------------------------------------------------------------------
 //
 
-#include "Transaction.h"
-
 #ifndef TRANSACTIONFACTORY_H
 #define TRANSACTIONFACTORY_H
+
+#include "Borrow.h"
+#include "ReturnItem.h"
+#include "Show.h"
+#include "History.h"
 
 class TransactionFactory {
 public:
     // Available types of transactions
     enum class TransactionType{
         Borrow,
-        Return,
+        ReturnItem,
         Inventory,
         History
     };
 
-    Transaction static createTrans(TransactionType);        // Returns an enum checked transaction.
+    static Transaction* createTrans(TransactionType type);        // Returns an enum checked transaction.
 private:
 };
 
-#endif TRANSACTIONFACTORY_H
+#endif

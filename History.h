@@ -11,11 +11,12 @@
 #ifndef HISTORY_H
 #define HISTORY_H
 
-class Inventory {
+class History : public Transaction {
 public:
     void doTrans();
     void processData();
+    void display();
 private:
 };
 
-#endif HISTORY_H
+#endif

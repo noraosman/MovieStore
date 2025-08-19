@@ -11,14 +11,13 @@
 #ifndef SHOW_H
 #define SHOW_H
 
-#include "Movie.h"
-
-class Inventory {
+class Show : public Transaction {
 public:
     void doTrans();
     void processData();
+    void display();
 private:
 };
 
-#endif SHOW_H
+#endif
 

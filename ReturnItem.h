@@ -15,10 +15,10 @@
 
 #include "Transaction.h"
 
-#ifndef RETURN_H
-#define RETURN_H
+#ifndef RETURNITEM_H
+#define RETURNITEM_H
 
-class Return : Transaction {
+class ReturnItem : public Transaction {
 public:
 void doTrans();
 void processData();
@@ -31,4 +31,4 @@ string movieName;               // Name of the rented title.
 int timeStamp;                  // Time the title was rented.
 };
 
-#endif RETURN_H
+#endif

@@ -11,17 +11,20 @@
 // ---------------------------------------------------------------------------
 //
 
+#ifndef TRANSACTION_H
+#define TRANSACTION_H
+
 #include <string>
 
 using namespace std;
 
-#ifndef TRANSACTION_H
-#define TRANSACTION_H
-
 class Transaction {
 public:
-void doTrans();
-void processData();
+virtual ~Transaction() = default; // Virtual destructor for proper cleanup of derived classes
+
+virtual void doTrans() = 0;
+virtual void processData() = 0;
+virtual void display() = 0;
 
 private:
 int custID;                     // Renting customer's ID number.
@@ -32,4 +35,4 @@ string transType;               // Type of transaction being preformed, borrow o
 };
 
 
-#endif TRANSACTION_H
+#endif

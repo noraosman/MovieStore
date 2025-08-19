@@ -18,7 +18,7 @@
 #ifndef BORROW_H
 #define BORROW_H
 
-class Borrow : Transaction {
+class Borrow : public Transaction {
 public:
 void doTrans();
 void processData();
@@ -31,4 +31,4 @@ string movieName;               // Name of the rented title.
 int timeStamp;                  // Time the title was rented.
 };
 
-#endif BORROW_H
+#endif

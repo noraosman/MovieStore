@@ -15,7 +15,7 @@
 #ifndef STORE_H
 #define STORE_H
 #include "HashTable.h"
-#include "Inventory.h"
+#include "Show.h"
 #include "Movie.h"
 #include "Customer.h"
 #include <string>
@@ -48,4 +48,4 @@ public:
 };
 
 
-#endif STORE_H
+#endif
