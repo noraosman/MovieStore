@@ -5,27 +5,20 @@
 // Date: 08/12/2025
 //
 // Description:
-// Inventory of the movies based on stock, director title and year.
+// Can be treated as a separate transaction. Shows stock
 // ---------------------------------------------------------------------------
 //
+#ifndef SHOW_H
+#define SHOW_H
 
-#ifndef MOVIE_H
-#define MOVIE_H
+#include "Movie.h"
 
-#include <string>
-
-class Movie{
+class Inventory {
 public:
-    void operator<(Movie);
-    void operator==(Movie);
-    void display();
+    void doTrans();
     void processData();
-    void borrow();
-    void returnMovie();
 private:
-    int stock;
-    std::string director;
-    std::string title;
-    int year;
 };
-#endif MOVIE_H
+
+#endif SHOW_H
+

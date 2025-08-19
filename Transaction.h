@@ -20,7 +20,8 @@ using namespace std;
 
 class Transaction {
 public:
-void executeTransaction();      // Creates and bundles a new transaction if all data is correct.
+void doTrans();
+void processData();
 
 private:
 int custID;                     // Renting customer's ID number.

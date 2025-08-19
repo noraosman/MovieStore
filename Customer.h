@@ -19,8 +19,10 @@ using namespace std;
 
 class Customer {
 public:
-bool addTransaction(string);        // Creates a transaction based on transaction type, returns true if successful, false if unsuccessful.
-void reportHistory();               // Prints chronological listing of rental history for current customer.
+void setID(int);
+int getID();
+void addTrans();
+void getHistory();
 
 private:
 int id;                             // Customer's ID, as provided in the transactions.

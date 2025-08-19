@@ -20,7 +20,9 @@
 
 class Borrow : Transaction {
 public:
-void executeTransaction();      // Creates and bundles a new transaction if all data is correct.
+void doTrans();
+void processData();
+void display();
 
 private:
 int custID;                     // Renting customer's ID number.
