@@ -16,20 +16,27 @@
 #include "Comedy.h"
 #include "Store.h"
 #include <iostream>
+#include "MovieFactory.h"
 
 void Store::loadMovie(std::string data) {
+    Movie* movie = nullptr;
     if (data[0] == 'C') {
-        Classic* movie = new Classic(data);
-        inventory.addClassic(*movie);
+        movie = MovieFactory::createMovie(MovieFactory::MovieGenre::Classic);
+        movie->processData(data);
+        inventory.addClassic(*static_cast<Classic*>(movie));
     } else if (data[0] == 'D') {
-        Drama* movie = new Drama(data);
-        inventory.addDrama(*movie);
+        movie = MovieFactory::createMovie(MovieFactory::MovieGenre::Drama);
+        movie->processData(data);
+        inventory.addDrama(*static_cast<Drama*>(movie));
     } else if (data[0] == 'F') {
-        Comedy* movie = new Comedy(data);
-        inventory.addComedy(*movie);
+        movie = MovieFactory::createMovie(MovieFactory::MovieGenre::Comedy);
+        movie->processData(data);
+        inventory.addComedy(*static_cast<Comedy*>(movie));
     } else {
         std::cerr << "Unknown movie type in data: " << data << std::endl;
+        return;
     }
+    delete movie; // Clean up heap allocation
 }
 
 void Store::printInventory() {
