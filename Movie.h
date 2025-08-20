@@ -18,13 +18,13 @@ class Movie{
 public:
     virtual ~Movie() = default; // Virtual destructor for proper cleanup of derived classes
 
-    virtual void operator<(Movie) = 0;
-    virtual void operator==(Movie) = 0;
-    virtual void display() = 0;
+    virtual void operator<(Movie) = 0; // Finished
+    virtual void operator==(Movie) = 0; // Finished
+    void display(); // Finished
     virtual void processData() = 0;
     virtual void borrow() = 0;
     virtual void returnMovie() = 0;
-private:
+protected:
     int stock;
     std::string director;
     std::string title;

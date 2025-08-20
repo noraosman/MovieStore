@@ -9,6 +9,7 @@
 // Displays also Major actor and release date
 // ---------------------------------------------------------------------------
 //
+
 #ifndef CLASSIC_H
 #define CLASSIC_H
 
@@ -18,14 +19,14 @@
 
 class Classic : public Movie {
 public:
-    void operator<(Movie);
-    void operator==(Movie);
-    void display();
+    bool operator<(const Movie& other) const; // Finished
+    bool operator==(const Movie& other) const; // Finished
+    void display(); // Finished
     void processData();
     void borrow();
     void returnMovie();
 private:
-    std::string majorActorName;
-    int releaseDate;
+    std::string majorActorName; // Major actor's name
+    int releaseMonth; // Release month
 };
-#endif //CLASSIC_H
+#endif

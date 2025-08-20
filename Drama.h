@@ -9,22 +9,20 @@
 // ---------------------------------------------------------------------------
 //
 
-
 #ifndef DRAMA_H
 #define DRAMA_H
+
 #include "Movie.h"
 #include "MovieFactory.h"
 
 class Drama : public Movie {
 public:
-    void operator<(Movie);
-    void operator==(Movie);
-    void display();
+    bool operator<(const Movie& other) const; // Finished
+    bool operator==(const Movie& other) const; // Finished
+    void display(); // Finished
     void processData();
     void borrow();
     void returnMovie();
 private:
-    std::string majorActorName;
-    int releaseDate;
 };
 #endif //DRAMA_H
