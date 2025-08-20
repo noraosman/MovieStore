@@ -17,13 +17,15 @@
 class Movie{
 public:
     virtual ~Movie() = default; // Virtual destructor for proper cleanup of derived classes
-
-    virtual void operator<(Movie) = 0; // Finished
-    virtual void operator==(Movie) = 0; // Finished
+    virtual bool operator<(const Movie&) const = 0; // Finished
+    virtual bool operator==(const Movie&) const = 0; // Finished
     void display(); // Finished
-    virtual void processData() = 0;
-    virtual void borrow() = 0;
-    virtual void returnMovie() = 0;
+    virtual void processData(std::string) = 0;
+    //virtual void borrow() = 0;
+    //virtual void returnMovie() = 0;
+    const std::string& getTitle() const { return title; }
+    int getYear() const { return year; }
+    const std::string& getDirector() const { return director; }
 protected:
     int stock;
     std::string director;

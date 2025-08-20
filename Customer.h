@@ -31,4 +31,4 @@ queue<string> history;              // History of rented movies.
 queue<string> currentRentals;       // Collection of currently rented titles.
 };
 
-#endif CUSTOMER_H
+#endif

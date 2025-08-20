@@ -11,6 +11,44 @@
 
 #include "Drama.h"
 #include <iostream>
+#include <sstream>
+
+Drama::Drama(std::string data) {
+    processData(data);
+}
+
+void Drama::processData(std::string data) {
+    // Remove the leading 'D,' if present
+    if (data[0] == 'D') {
+        data = data.substr(2);
+        data.erase(0, data.find_first_not_of(' '));
+    } else {
+        std::cerr << "Error: Invalid data format for Drama movie." << std::endl;
+        return;
+    }
+
+    std::istringstream iss(data);
+    std::string stockStr, directorStr, titleStr, yearStr;
+
+    // Parse stock
+    std::getline(iss, stockStr, ',');
+    stock = std::stoi(stockStr);
+
+    // Parse director
+    std::getline(iss, directorStr, ',');
+    directorStr.erase(0, directorStr.find_first_not_of(' '));
+    directorStr.erase(directorStr.find_last_not_of(' ') + 1);
+    director = directorStr;
+
+    // Parse title
+    std::getline(iss, titleStr, ',');
+    titleStr.erase(0, titleStr.find_first_not_of(' '));
+    titleStr.erase(titleStr.find_last_not_of(' ') + 1);
+    title = titleStr;
+
+    // Parse year
+    iss >> year;
+}
 
 bool Drama::operator<(const Movie& other) const {
     const Drama* otherDrama = dynamic_cast<const Drama*>(&other);
@@ -38,4 +76,12 @@ bool Drama::operator==(const Movie& other) const {
     return (director == otherDrama->director &&
             title == otherDrama->title &&
             year == otherDrama->year);
+}
+
+void Drama::display() {
+    std::cout << "Drama Movie:" << std::endl;
+    std::cout << "Title: " << title << std::endl;
+    std::cout << "Director: " << director << std::endl;
+    std::cout << "Year: " << year << std::endl;
+    std::cout << "Stock: " << stock << std::endl;
 }

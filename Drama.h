@@ -17,12 +17,14 @@
 
 class Drama : public Movie {
 public:
-    bool operator<(const Movie& other) const; // Finished
-    bool operator==(const Movie& other) const; // Finished
+    Drama() = default; // Default constructor
+    Drama(std::string);
+    bool operator<(const Movie& other) const override; // Finished
+    bool operator==(const Movie& other) const override; // Finished
     void display(); // Finished
-    void processData();
-    void borrow();
-    void returnMovie();
+    void processData(std::string) override; // Finished
+    //void borrow();
+    //void returnMovie();
 private:
 };
 #endif //DRAMA_H

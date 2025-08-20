@@ -16,16 +16,21 @@ int main() {
     }
     
     while (getline(movieFile, line)) {
-        if (line.empty()) continue; // Skip empty lines
-
-        // Parse the line to create a Movie object
-        // Example: "F, 123, Funny Movie, 2020, Actor Name"
-        // Logic to parse and create a movie object based on the genre
-        // and add it to the inventory
+        if (line.empty()) {
+            continue; 
+        } else if (line[0] == 'C' || line[0] == 'D' || line[0] == 'F') {
+            store.loadMovie(line);
+        } else {
+            cerr << "Unknown movie type: " << line[0] << endl;
+            continue; // Skip unknown types
+        }
     }
+
+    store.printInventory();
     movieFile.close();
     /////////////////////////////////////////
 
+    /*
     // Load customers
     ifstream customerFile("data4customers.txt");
     if (!customerFile) {
@@ -59,7 +64,8 @@ int main() {
         // using TransactionFactory to create the appropriate transaction object
     }
     commandFile.close();
-    //////////////////////////////////////////
+    /////////////////////////////////////////
+    */
 
     return 0;
 }

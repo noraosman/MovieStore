@@ -19,13 +19,17 @@
 
 class Classic : public Movie {
 public:
-    bool operator<(const Movie& other) const; // Finished
-    bool operator==(const Movie& other) const; // Finished
+    Classic() = default; // Default constructor
+    Classic(std::string);
+    bool operator<(const Movie& other) const override; // Finished
+    bool operator==(const Movie& other) const override; // Finished
     void display(); // Finished
-    void processData();
-    void borrow();
-    void returnMovie();
-private:
+    void processData(std::string) override; // Finished
+    //void borrow();
+    //void returnMovie();
+    int getReleaseMonth() const { return releaseMonth; }
+    const std::string& getMajorActorName() const { return majorActorName; }
+protected:
     std::string majorActorName; // Major actor's name
     int releaseMonth; // Release month
 };

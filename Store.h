@@ -14,37 +14,34 @@
 
 #ifndef STORE_H
 #define STORE_H
-#include "HashTable.h"
-#include "Show.h"
+
 #include "Movie.h"
-#include "Customer.h"
 #include <string>
+#include "Inventory.h"
 
 class Store{
 private:
-    HashTable customers;        //stores customers keyed by ID
-    Inventory inventory;         //Stores and manages movie collection
+    //HashTable customers;        //Stores customers keyed by ID
+    Inventory inventory;        //Stores and manages movie collection
 
 public:
     // Constructor & Destructor
-    Store();
-    ~Store();
+    Store() = default;
+    //~Store();
 
     // load Data
-    void loadMovie();
+    void loadMovie(std::string);
     void loadCustomers();
 
     // Search Data
-    Movie* findMovie(const string& movieKey);
-    Customer* findCustomer(int customerID);
+    //Movie* findMovie(const std::string& movieKey);
+    //Customer* findCustomer(int customerID);
 
     // prints inventory
     void printInventory();
 
     // starts a transaction
     void startTransaction();
-
-
 };
 
 

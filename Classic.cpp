@@ -12,6 +12,48 @@
 
 #include "Classic.h"
 #include <iostream>
+#include <sstream>
+
+Classic::Classic(std::string data) {
+    processData(data);
+}
+
+void Classic::processData(std::string data) {
+    // Remove the leading 'C,' if present
+    if (data[0] == 'C') {
+        data = data.substr(2); // Skip "C,"
+    } else {
+        std::cerr << "Error: Invalid data format for Classic movie." << std::endl;
+        return;
+    }
+
+    std::istringstream iss(data);
+    std::string stockStr, directorStr, titleStr, actorFirst, actorLast;
+    int monthVal, yearVal;
+
+    // Parse stock
+    std::getline(iss, stockStr, ',');
+    stock = std::stoi(stockStr);
+
+    // Parse director
+    std::getline(iss, directorStr, ',');
+    // Remove leading/trailing spaces
+    directorStr.erase(0, directorStr.find_first_not_of(' '));
+    directorStr.erase(directorStr.find_last_not_of(' ') + 1);
+    director = directorStr;
+
+    // Parse title
+    std::getline(iss, titleStr, ',');
+    titleStr.erase(0, titleStr.find_first_not_of(' '));
+    titleStr.erase(titleStr.find_last_not_of(' ') + 1);
+    title = titleStr;
+
+    // Parse major actor (first and last name), month, year
+    iss >> actorFirst >> actorLast >> monthVal >> yearVal;
+    majorActorName = actorFirst + " " + actorLast;
+    releaseMonth = monthVal;
+    year = yearVal;
+}
 
 bool Classic::operator<(const Movie& other) const {
     // Attempt to cast other to Classic
