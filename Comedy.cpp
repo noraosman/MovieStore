@@ -79,9 +79,5 @@ bool Comedy::operator==(const Movie& other) const {
 }
 
 void Comedy::display() {
-    std::cout << "Comedy Movie:" << std::endl;
-    std::cout << "Title: " << title << std::endl;
-    std::cout << "Director: " << director << std::endl;
-    std::cout << "Year: " << year << std::endl;
-    std::cout << "Stock: " << stock << std::endl;
+    std::cout << stock << ", " << director << ", " << title << ", " << year << std::endl;
 }
