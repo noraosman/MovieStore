@@ -1,13 +1,16 @@
 #include <iostream>
 #include <fstream>
 #include "Store.h"
+#include "CustomerHashTable.h"
 
 using namespace std;
 
 int main() {
-    Store store;
+    //Store store;
+    CustomerHashTable customers;
     string line;
 
+    /*
     // Load movies
     ifstream movieFile("data4movies.txt");
     if (!movieFile) {
@@ -30,7 +33,7 @@ int main() {
     movieFile.close();
     /////////////////////////////////////////
 
-    /*
+    */
     // Load customers
     ifstream customerFile("data4customers.txt");
     if (!customerFile) {
@@ -39,15 +42,18 @@ int main() {
     }
     
     while (getline(customerFile, line)) {
-        if (line.empty()) continue; // Skip empty lines
-
-        // Parse the line to create a Customer object
-        // Example: "123, John Doe, 555-1234"
-        // Logic to parse and create a customer object and add it to the hash table
+        if (line.empty()) {
+            continue;
+        } else {
+            customers.insertFromLine(line);
+        }
     }
+    customers.printCustomers();
     customerFile.close();
     /////////////////////////////////////////
 
+
+    /*
     // Process commands
     ifstream commandFile("data4commands.txt");
     if (!commandFile) {

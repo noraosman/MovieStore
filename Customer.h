@@ -19,16 +19,14 @@ using namespace std;
 
 class Customer {
 public:
-void setID(int);
-int getID();
-void addTrans();
-void getHistory();
+Customer(int, std::string, std::string);
+int getID() const;
+void displayCustomer() const;
 
 private:
 int id;                             // Customer's ID, as provided in the transactions.
-string name;                        // Customer's name, as provided in the transactions.
-queue<string> history;              // History of rented movies.
-queue<string> currentRentals;       // Collection of currently rented titles.
+string first;                        // Customer's first name, as provided in the transactions.
+string last;                         // Customer's last name, as provided in the transactions.
 };
 
 #endif
