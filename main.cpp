@@ -2,15 +2,15 @@
 #include <fstream>
 #include "Store.h"
 #include "CustomerHashTable.h"
+#include "TransactionFactory.h"
 
 using namespace std;
 
 int main() {
-    //Store store;
+    Store store;
     CustomerHashTable customers;
     string line;
 
-    /*
     // Load movies
     ifstream movieFile("data4movies.txt");
     if (!movieFile) {
@@ -28,12 +28,9 @@ int main() {
             continue; // Skip unknown types
         }
     }
-
-    store.printInventory();
     movieFile.close();
     /////////////////////////////////////////
 
-    */
     // Load customers
     ifstream customerFile("data4customers.txt");
     if (!customerFile) {
@@ -48,12 +45,9 @@ int main() {
             customers.insertFromLine(line);
         }
     }
-    customers.printCustomers();
     customerFile.close();
     /////////////////////////////////////////
-
-
-    /*
+    
     // Process commands
     ifstream commandFile("data4commands.txt");
     if (!commandFile) {
@@ -62,16 +56,38 @@ int main() {
     }
     
     while (getline(commandFile, line)) {
-        if (line.empty()) continue; // Skip empty lines
-
-        // Parse the command line
-        // Example: "B 123 D Comedy, Funny Movie, 2020"
-        // Logic to parse the command and perform the corresponding transaction
-        // using TransactionFactory to create the appropriate transaction object
+        if (line.empty()) {
+            continue;
+        } else {
+            Transaction* transaction = nullptr;
+            char code = line[0];
+            switch (code) {
+                case 'B':
+                    transaction = TransactionFactory::createTrans(TransactionFactory::TransactionType::Borrow);
+                    break;
+                case 'I':
+                    transaction = TransactionFactory::createTrans(TransactionFactory::TransactionType::Show);
+                    break;
+                case 'R':
+                    transaction = TransactionFactory::createTrans(TransactionFactory::TransactionType::ReturnItem);
+                    break;
+                case 'H':
+                    transaction = TransactionFactory::createTrans(TransactionFactory::TransactionType::History);
+                    break;
+                default:
+                    cerr << "Unknown transaction type: " << code << endl;
+                    continue;
+            }
+            if (transaction) {
+                if (transaction->processData(line)) {
+                    transaction->execute(store, customers);
+                }
+                delete transaction;
+            }
+        }
     }
     commandFile.close();
     /////////////////////////////////////////
-    */
 
     return 0;
 }

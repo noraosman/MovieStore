@@ -81,3 +81,7 @@ bool Drama::operator==(const Movie& other) const {
 void Drama::display() {
     std::cout << stock << ", " << director << ", " << title << ", " << year << std::endl;
 }
+
+int Drama::getStock() const { return stock; }
+void Drama::decrementStock() { if (stock > 0) --stock; }
+void Drama::incrementStock() { ++stock; }

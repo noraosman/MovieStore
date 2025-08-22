@@ -17,6 +17,7 @@
 #include "Store.h"
 #include <iostream>
 #include "MovieFactory.h"
+#include "Customer.h"
 
 void Store::loadMovie(std::string data) {
     Movie* movie = nullptr;
@@ -36,9 +37,109 @@ void Store::loadMovie(std::string data) {
         std::cerr << "Unknown movie type in data: " << data << std::endl;
         return;
     }
-    delete movie; // Clean up heap allocation
+    delete movie;
 }
 
 void Store::printInventory() {
     inventory.printAllInventories();
+}
+
+void Store::addComedy(const Comedy& comedy) {
+    inventory.addComedy(comedy);
+}
+void Store::addDrama(const Drama& drama) {
+    inventory.addDrama(drama);
+}
+void Store::addClassic(const Classic& classic) {
+    inventory.addClassic(classic);
+}
+
+bool Store::borrowComedy(const std::string& title, int year, Customer* customer) {
+    Comedy* movie = inventory.findComedy(title, year);
+    if (!movie) {
+        std::cerr << "Error: Comedy movie \"" << title << "\" (" << year << ") not found.\n";
+        return false;
+    }
+    if (movie->getStock() <= 0) {
+        std::cerr << "Error: Comedy movie \"" << title << "\" (" << year << ") out of stock.\n";
+        return false;
+    }
+    movie->decrementStock();
+    customer->addBorrowedMovie(movie);
+    return true;
+}
+
+bool Store::borrowDrama(const std::string& director, const std::string& title, Customer* customer) {
+    Drama* movie = inventory.findDrama(director, title);
+    if (!movie) {
+        std::cerr << "Error: Drama movie \"" << title << "\" by " << director << " not found.\n";
+        return false;
+    }
+    if (movie->getStock() <= 0) {
+        std::cerr << "Error: Drama movie \"" << title << "\" by " << director << " out of stock.\n";
+        return false;
+    }
+    movie->decrementStock();
+    customer->addBorrowedMovie(movie);
+    return true;
+}
+
+bool Store::borrowClassic(int year, int month, const std::string& majorActor, Customer* customer) {
+    Classic* movie = inventory.findClassic(year, month, majorActor);
+    if (!movie) {
+        std::cerr << "Error: Classic movie (" << month << "/" << year << ") starring " << majorActor << " not found.\n";
+        return false;
+    }
+    if (movie->getStock() <= 0) {
+        std::cerr << "Error: Classic movie (" << month << "/" << year << ") starring " << majorActor << " out of stock.\n";
+        return false;
+    }
+    movie->decrementStock();
+    customer->addBorrowedMovie(movie);
+    return true;
+}
+
+bool Store::returnComedy(const std::string& title, int year, Customer* customer) {
+    Comedy* movie = inventory.findComedy(title, year);
+    if (!movie) {
+        std::cerr << "Error: Comedy movie \"" << title << "\" (" << year << ") not found for return.\n";
+        return false;
+    }
+    if (!customer->hasBorrowedMovie(movie)) {
+        std::cerr << "Error: Customer did not borrow this comedy movie.\n";
+        return false;
+    }
+    movie->incrementStock();
+    customer->removeBorrowedMovie(movie);
+    return true;
+}
+
+bool Store::returnDrama(const std::string& director, const std::string& title, Customer* customer) {
+    Drama* movie = inventory.findDrama(director, title);
+    if (!movie) {
+        std::cerr << "Error: Drama movie \"" << title << "\" by " << director << " not found for return.\n";
+        return false;
+    }
+    if (!customer->hasBorrowedMovie(movie)) {
+        std::cerr << "Error: Customer did not borrow this drama movie.\n";
+        return false;
+    }
+    movie->incrementStock();
+    customer->removeBorrowedMovie(movie);
+    return true;
+}
+
+bool Store::returnClassic(int year, int month, const std::string& majorActor, Customer* customer) {
+    Classic* movie = inventory.findClassic(year, month, majorActor);
+    if (!movie) {
+        std::cerr << "Error: Classic movie (" << month << "/" << year << ") starring " << majorActor << " not found for return.\n";
+        return false;
+    }
+    if (!customer->hasBorrowedMovie(movie)) {
+        std::cerr << "Error: Customer did not borrow this classic movie.\n";
+        return false;
+    }
+    movie->incrementStock();
+    customer->removeBorrowedMovie(movie);
+    return true;
 }

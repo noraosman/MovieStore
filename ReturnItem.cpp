@@ -12,3 +12,50 @@
 // space.
 // ---------------------------------------------------------------------------
 //
+
+#include "ReturnItem.h"
+#include <sstream>
+#include <iostream>
+
+bool ReturnItem::processData(const std::string& data) {
+    std::istringstream iss(data);
+    char transType, mediaType;
+    iss >> transType >> customerID >> mediaType >> genre;
+    if (genre == 'F') {
+        std::getline(iss, title, ',');
+        iss >> year;
+        title.erase(0, title.find_first_not_of(' '));
+    } else if (genre == 'D') {
+        std::getline(iss, director, ',');
+        std::getline(iss, title, ',');
+        director.erase(0, director.find_first_not_of(' '));
+        title.erase(0, title.find_first_not_of(' '));
+    } else if (genre == 'C') {
+        iss >> month >> year;
+        std::string first, last;
+        iss >> first >> last;
+        majorActor = first + " " + last;
+    } else {
+        return false;
+    }
+    return true;
+}
+
+void ReturnItem::execute(Store& store, CustomerHashTable& customers) {
+    Customer* customer = customers.find(customerID);
+    if (!customer) {
+        std::cerr << "Error: Customer " << customerID << " not found.\n";
+        return;
+    }
+    bool success = false;
+    if (genre == 'F') {
+        success = store.returnComedy(title, year, customer);
+    } else if (genre == 'D') {
+        success = store.returnDrama(director, title, customer);
+    } else if (genre == 'C') {
+        success = store.returnClassic(year, month, majorActor, customer);
+    }
+    if (success) {
+        customer->addHistory("Returned: " + std::string(1, genre) + " " + title);
+    }
+}

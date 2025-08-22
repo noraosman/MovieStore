@@ -15,23 +15,16 @@
 #define TRANSACTION_H
 
 #include <string>
-
-using namespace std;
+#include "Store.h"
+#include "CustomerHashTable.h"
 
 class Transaction {
 public:
 virtual ~Transaction() = default; // Virtual destructor for proper cleanup of derived classes
-
-virtual void doTrans() = 0;
-virtual void processData() = 0;
-virtual void display() = 0;
+virtual void execute(Store& store, CustomerHashTable& customers) = 0;
+virtual bool processData(const std::string& data) = 0;
 
 private:
-int custID;                     // Renting customer's ID number.
-char mediaID;                   // Rented title's type, i.e comedy.
-string movieName;               // Name of the rented title.
-int timeStamp;                  // Time the title was rented.
-string transType;               // Type of transaction being preformed, borrow or return.
 };
 
 

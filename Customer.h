@@ -11,6 +11,8 @@
 
 #include <string>
 #include <queue>
+#include <vector>
+#include "Movie.h"
 
 using namespace std;
 
@@ -19,14 +21,21 @@ using namespace std;
 
 class Customer {
 public:
-Customer(int, std::string, std::string);
-int getID() const;
-void displayCustomer() const;
+    Customer(int, std::string, std::string);
+    int getID() const;
+    void displayCustomer() const;
+    void addHistory(const std::string& record);
+    void printHistory() const;
+    void addBorrowedMovie(Movie* movie);
+    void removeBorrowedMovie(Movie* movie);
+    bool hasBorrowedMovie(Movie* movie) const;
 
 private:
-int id;                             // Customer's ID, as provided in the transactions.
-string first;                        // Customer's first name, as provided in the transactions.
-string last;                         // Customer's last name, as provided in the transactions.
+    std::vector<Movie*> borrowedMovies;
+    std::vector<std::string> history;
+    int id;                             // Customer's ID, as provided in the transactions.
+    string first;                        // Customer's first name, as provided in the transactions.
+    string last;                         // Customer's last name, as provided in the transactions.
 };
 
 #endif

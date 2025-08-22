@@ -81,3 +81,8 @@ bool Comedy::operator==(const Movie& other) const {
 void Comedy::display() {
     std::cout << stock << ", " << director << ", " << title << ", " << year << std::endl;
 }
+
+
+int Comedy::getStock() const { return stock; }
+void Comedy::decrementStock() { if (stock > 0) --stock; }
+void Comedy::incrementStock() { ++stock; }

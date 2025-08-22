@@ -7,4 +7,17 @@
 // Description:
 // Can be treated as a separate transaction. Shows stock
 // ---------------------------------------------------------------------------
-//this is
+//
+
+#include "Show.h"
+#include <string>
+#include "Store.h"
+#include "CustomerHashTable.h"
+
+bool Show::processData(const std::string& data) {
+    return true;
+}
+
+void Show::execute(Store& store, CustomerHashTable& customers) {
+    store.printInventory();
+}

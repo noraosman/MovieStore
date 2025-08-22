@@ -8,15 +8,18 @@
 // 
 // ---------------------------------------------------------------------------
 //
+
 #ifndef HISTORY_H
 #define HISTORY_H
 
+#include "Transaction.h"
+
 class History : public Transaction {
 public:
-    void doTrans();
-    void processData();
-    void display();
+    bool processData(const std::string& data) override;
+    void execute(Store& store, CustomerHashTable& customers) override;
 private:
+    int customerID;
 };
 
 #endif

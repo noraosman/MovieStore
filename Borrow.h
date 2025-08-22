@@ -13,22 +13,20 @@
 // ---------------------------------------------------------------------------
 //
 
-#include "Transaction.h"
-
 #ifndef BORROW_H
 #define BORROW_H
 
+#include "Transaction.h"
+
 class Borrow : public Transaction {
 public:
-void doTrans();
-void processData();
-void display();
-
+    bool processData(const std::string& data) override;
+    void execute(Store& store, CustomerHashTable& customers) override;
 private:
-int custID;                     // Renting customer's ID number.
-char mediaID;                   // Rented title's type, i.e comedy.
-string movieName;               // Name of the rented title.
-int timeStamp;                  // Time the title was rented.
+    int customerID;
+    char genre;
+    std::string title, director, majorActor;
+    int year, month;
 };
 
 #endif

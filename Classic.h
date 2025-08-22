@@ -25,10 +25,11 @@ public:
     bool operator==(const Movie& other) const override; // Finished
     void display(); // Finished
     void processData(std::string) override; // Finished
-    //void borrow();
-    //void returnMovie();
     int getReleaseMonth() const { return releaseMonth; }
     const std::string& getMajorActorName() const { return majorActorName; }
+    int getStock() const;
+    void decrementStock();
+    void incrementStock();
 protected:
     std::string majorActorName; // Major actor's name
     int releaseMonth; // Release month

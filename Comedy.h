@@ -23,8 +23,9 @@ public:
     bool operator==(const Movie& other) const override; // Finished
     void display(); // Finished
     void processData(std::string) override; // Finished
-    //void borrow();
-    //void returnMovie();
+    int getStock() const;
+    void decrementStock();
+    void incrementStock();
 private:
 };
 #endif

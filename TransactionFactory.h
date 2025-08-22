@@ -24,7 +24,7 @@ public:
     enum class TransactionType{
         Borrow,
         ReturnItem,
-        Inventory,
+        Show,
         History
     };
 

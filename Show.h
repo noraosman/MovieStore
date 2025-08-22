@@ -8,16 +8,19 @@
 // Can be treated as a separate transaction. Shows stock
 // ---------------------------------------------------------------------------
 //
+
 #ifndef SHOW_H
 #define SHOW_H
 
+#include "Transaction.h"
+#include "Store.h"
+#include "CustomerHashTable.h"
+
 class Show : public Transaction {
 public:
-    void doTrans();
-    void processData();
-    void display();
+    void execute(Store& store, CustomerHashTable& customers);
+    bool processData(const std::string& data);
 private:
 };
 
 #endif
-

@@ -18,30 +18,33 @@
 #include "Movie.h"
 #include <string>
 #include "Inventory.h"
+#include "Customer.h"
 
 class Store{
-private:
-    //HashTable customers;        //Stores customers keyed by ID
-    Inventory inventory;        //Stores and manages movie collection
-
 public:
-    // Constructor & Destructor
-    Store() = default;
-    //~Store();
-
-    // load Data
     void loadMovie(std::string);
-    void loadCustomers();
 
-    // Search Data
-    //Movie* findMovie(const std::string& movieKey);
-    //Customer* findCustomer(int customerID);
+     Store() = default;
+    ~Store() = default;
 
-    // prints inventory
+    // Borrow/Return for each genre
+    bool borrowComedy(const std::string& title, int year, Customer* customer);
+    bool borrowDrama(const std::string& director, const std::string& title, Customer* customer);
+    bool borrowClassic(int year, int month, const std::string& majorActor, Customer* customer);
+
+    bool returnComedy(const std::string& title, int year, Customer* customer);
+    bool returnDrama(const std::string& director, const std::string& title, Customer* customer);
+    bool returnClassic(int year, int month, const std::string& majorActor, Customer* customer);
+
     void printInventory();
 
-    // starts a transaction
-    void startTransaction();
+    // Add movies to inventory
+    void addComedy(const Comedy& comedy);
+    void addDrama(const Drama& drama);
+    void addClassic(const Classic& classic);
+
+private:
+    Inventory inventory;
 };
 
 

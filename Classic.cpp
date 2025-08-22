@@ -100,3 +100,7 @@ void Classic::display() {
               << majorActorName << " " << releaseMonth << " " << year
               << std::endl;
 }
+
+int Classic::getStock() const { return stock; }
+void Classic::decrementStock() { if (stock > 0) --stock; }
+void Classic::incrementStock() { ++stock; }

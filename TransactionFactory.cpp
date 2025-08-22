@@ -18,11 +18,11 @@ Transaction* TransactionFactory::createTrans(TransactionType type) {
             return new Borrow();
         case TransactionType::ReturnItem:
             return new ReturnItem();
-        case TransactionType::Inventory:
+        case TransactionType::Show:
             return new Show();
         case TransactionType::History:
             return new History();
         default:
-            return nullptr; // or throw an exception
+            return nullptr;
     }
 }
