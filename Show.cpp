@@ -14,10 +14,16 @@
 #include "Store.h"
 #include "CustomerHashTable.h"
 
+// ---------------------------------------------------------------------------
+// Placeholder, no data to process for Show transaction
+// ---------------------------------------------------------------------------
 bool Show::processData(const std::string& data) {
     return true;
 }
 
+// ---------------------------------------------------------------------------
+// Executes the Show transaction by sprinting store's entire inventory
+// ---------------------------------------------------------------------------
 void Show::execute(Store& store, CustomerHashTable& customers) {
     store.printInventory();
 }

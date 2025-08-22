@@ -1,3 +1,18 @@
+//
+// ---------------------------------------------------------------------------
+// Assignment 4:MovieStore
+// Group Members: Kyle Williams(2550507) and Nora Osmanova(2550505)
+// Date: 08/12/2025
+//
+// ---------------------------------------------------------------------------
+// Description:
+// The inventory class stores and retrieves movies by genre
+// Comedy movies are identified by title and year
+// Drama movies are identified by director and title
+// Classic movies are identified by Classic Key which identified by release date and actor
+// Can do insertion, lookup, and a method to print all inventories
+// ---------------------------------------------------------------------------
+#ifndef INVENTORY_H
 #include "Inventory.h"
 #include <iostream>
 #include <tuple>
@@ -61,3 +76,4 @@ void Inventory::printAllInventories() {
     }
     std::cout << std::endl;
 }
+

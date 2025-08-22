@@ -5,7 +5,7 @@
 // Date: 08/12/2025
 //
 // Description:
-// Stores customer info by ID and Name. Customer has transaction history.
+// Stores customer info by ID and Name. Tracks borrowed movies and transaction history.
 // ---------------------------------------------------------------------------
 //
 
@@ -21,11 +21,22 @@ using namespace std;
 
 class Customer {
 public:
+    //Creates customer with ID, last name and first name
     Customer(int, std::string, std::string);
+
+    // Get customer ID
     int getID() const;
+
+    //Print customer info
     void displayCustomer() const;
+
+    //Add a transaction to record the history
     void addHistory(const std::string& record);
+
+    //Print all transaction history
     void printHistory() const;
+
+    // Track borrowed movies
     void addBorrowedMovie(Movie* movie);
     void removeBorrowedMovie(Movie* movie);
     bool hasBorrowedMovie(Movie* movie) const;

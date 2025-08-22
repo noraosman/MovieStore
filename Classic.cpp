@@ -6,18 +6,20 @@
 //
 // Description:
 // Inherits attributes from Inventory aka Movie class.
-// Displays also Major actor and release date
+// Adds major actor and release month fields, parsing, comparison
+// display and stock management
 // ---------------------------------------------------------------------------
 //
 
 #include "Classic.h"
 #include <iostream>
 #include <sstream>
-
+ //Constructor builds a classic movie from data string
 Classic::Classic(std::string data) {
     processData(data);
 }
 
+//Parse data string and fill classic attributes
 void Classic::processData(std::string data) {
     // Remove the leading 'C,' if present
     if (data[0] == 'C') {
@@ -55,6 +57,8 @@ void Classic::processData(std::string data) {
     year = yearVal;
 }
 
+
+//Compare classics by year, then month and then actor
 bool Classic::operator<(const Movie& other) const {
     // Attempt to cast other to Classic
     const Classic* otherClassic = dynamic_cast<const Classic*>(&other);
@@ -77,6 +81,7 @@ bool Classic::operator<(const Movie& other) const {
     return majorActorName < otherClassic->majorActorName;
 }
 
+//Equality check, all fields must match
 bool Classic::operator==(const Movie& other) const {
     // Attempt to cast other to Classic
     const Classic* otherClassic = dynamic_cast<const Classic*>(&other);
@@ -95,12 +100,14 @@ bool Classic::operator==(const Movie& other) const {
         majorActorName == otherClassic->majorActorName);
 }
 
+//Print classic movie details
 void Classic::display() {
     std::cout << stock << ", " << director << ", " << title << ", "
               << majorActorName << " " << releaseMonth << " " << year
               << std::endl;
 }
 
+//Update and access stock
 int Classic::getStock() const { return stock; }
 void Classic::decrementStock() { if (stock > 0) --stock; }
 void Classic::incrementStock() { ++stock; }

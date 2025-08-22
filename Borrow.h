@@ -5,11 +5,9 @@
 // Date: 08/12/2025
 //
 // Description:
-// Borrows a movie(inventory -1). Inherits from transaction class
-// customer ID followed by type of media (currently only ‘D’ for
-// DVD) then movie type and movie data (with values of the two sorting attributes, using
-// comma or space to separate them as in the movie data file). Fields are separated by a
-// space.
+//Borrow transaction. Inherits from Transaction.
+// Reads customer ID, media type, genre and movie info.
+// Can decrease stock and update customer history
 // ---------------------------------------------------------------------------
 //
 
@@ -20,7 +18,10 @@
 
 class Borrow : public Transaction {
 public:
+    //Read data and exract fields for borrow transaction
     bool processData(const std::string& data) override;
+
+    //Borrow the movie from store and update customer
     void execute(Store& store, CustomerHashTable& customers) override;
 private:
     int customerID;

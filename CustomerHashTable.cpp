@@ -5,9 +5,7 @@
 // Date: 08/12/2025
 //
 // Description:
-// Implement a hash table to look up customers, add and remove customers.
-// Has a vector bucket to hold customers by their ID number has keys and names/last
-// names as values. Can insert, find, remove and hash
+// Implement a hash table to look up, add and remove  and load customers.
 // ---------------------------------------------------------------------------
 //
 
@@ -15,9 +13,12 @@
 #include <sstream>
 #include <iostream>
 
+// Creates a hashtable with given number of buckets
 CustomerHashTable::CustomerHashTable(size_t capacity)
     : table(capacity) {}
 
+//Insert  a customer into the table, return true if successful,
+// return false if it already exists
 bool CustomerHashTable::insert(Customer* customer) {
     int key = customer->getID();
     size_t idx = hash(key);
@@ -28,6 +29,8 @@ bool CustomerHashTable::insert(Customer* customer) {
     return true;
 }
 
+//Find a customer by the ID, return the customer if found
+// return nullptr if not found
 Customer* CustomerHashTable::find(int id) {
     size_t idx = hash(id);
     for (auto& c : table[idx]) {
@@ -36,6 +39,9 @@ Customer* CustomerHashTable::find(int id) {
     return nullptr;
 }
 
+
+//Remove customer by ID, return true if removed
+// return false if unsuccesful
 bool CustomerHashTable::remove(int id) {
     size_t idx = hash(id);
     for (auto it = table[idx].begin(); it != table[idx].end(); ++it) {
@@ -47,6 +53,7 @@ bool CustomerHashTable::remove(int id) {
     return false;
 }
 
+// Build a customer from a life of text and insert into a table
 void CustomerHashTable::insertFromLine(const std::string& line) {
     if (line.empty()) return;
     std::istringstream iss(line);
@@ -57,10 +64,13 @@ void CustomerHashTable::insertFromLine(const std::string& line) {
     insert(cust);
 }
 
+//Hash function, maps customer ID into a bucket
 size_t CustomerHashTable::hash(int key) const {
     return key % table.size();
 }
 
+
+// Print all customer in the table
 void CustomerHashTable::printCustomers() const {
     for (const auto& bucket : table) {
         for (const auto& customer : bucket) {

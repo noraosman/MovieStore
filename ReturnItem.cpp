@@ -17,30 +17,48 @@
 #include <sstream>
 #include <iostream>
 
+
+// ---------------------------------------------------------------------------
+// Parses a line of transaction data into ReturnItem fields.
+// Finds customer ID by media type and genre
+// Depending on genre, parses movie by identifying attributes
+// Returns true if successful, false for invalid data
+// ---------------------------------------------------------------------------
 bool ReturnItem::processData(const std::string& data) {
     std::istringstream iss(data);
     char transType, mediaType;
     iss >> transType >> customerID >> mediaType >> genre;
+
+	// Parse based on genre
     if (genre == 'F') {
-        std::getline(iss, title, ',');
+		// Comedy: Title, Year
+        std::getline(iss, title, ',');      // read until sees comma
         iss >> year;
         title.erase(0, title.find_first_not_of(' '));
     } else if (genre == 'D') {
+		// Drama: Director, Title
         std::getline(iss, director, ',');
         std::getline(iss, title, ',');
         director.erase(0, director.find_first_not_of(' '));
         title.erase(0, title.find_first_not_of(' '));
     } else if (genre == 'C') {
+		// Classic: Month, Year, Major Actor
         iss >> month >> year;
         std::string first, last;
         iss >> first >> last;
-        majorActor = first + " " + last;
+        majorActor = first + " " + last;   // Combine into full name
     } else {
         return false;
     }
     return true;
 }
 
+// ---------------------------------------------------------------------------
+// Executes the return transaction
+// Looks up the customer by ID in hash table
+// Calls thr store and returns based on genre
+// If successful, increments stock and logs the transaction in customers history
+// ---------------------------------------------------------------------------
 void ReturnItem::execute(Store& store, CustomerHashTable& customers) {
     Customer* customer = customers.find(customerID);
     if (!customer) {

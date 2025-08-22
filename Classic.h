@@ -6,7 +6,8 @@
 //
 // Description:
 // Inherits attributes from Inventory aka Movie class.
-// Displays also Major actor and release date
+// Adds major actor and release month fields, parsing, comparison
+// display and stock management
 // ---------------------------------------------------------------------------
 //
 
@@ -21,12 +22,22 @@ class Classic : public Movie {
 public:
     Classic() = default; // Default constructor
     Classic(std::string);
-    bool operator<(const Movie& other) const override; // Finished
-    bool operator==(const Movie& other) const override; // Finished
-    void display(); // Finished
-    void processData(std::string) override; // Finished
+
+    //Comparison
+    bool operator<(const Movie& other) const override;
+    bool operator==(const Movie& other) const override;
+
+    //Prints movie info
+    void display();
+
+    //Parse data string
+    void processData(std::string) override;
+
+    //Specific identifying attributes for Classic
     int getReleaseMonth() const { return releaseMonth; }
     const std::string& getMajorActorName() const { return majorActorName; }
+
+    //Stock management
     int getStock() const;
     void decrementStock();
     void incrementStock();

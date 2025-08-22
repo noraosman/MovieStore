@@ -6,12 +6,15 @@
 // Date: 08/12/2025
 //
 // Description:
-// Reads the text file and separates into categories based on BRIH
+// Creates Transaction object based on Transaction enum.
+// Parses the commands by BRIH codes
+//
 // ---------------------------------------------------------------------------
 //
 
 #include "TransactionFactory.h"
 
+// Creates and returns a Transaction subclass instance based on 'type'
 Transaction* TransactionFactory::createTrans(TransactionType type) {
     switch (type) {
         case TransactionType::Borrow:
@@ -23,6 +26,8 @@ Transaction* TransactionFactory::createTrans(TransactionType type) {
         case TransactionType::History:
             return new History();
         default:
+
+			// Check for unknown transaction code
             return nullptr;
     }
 }

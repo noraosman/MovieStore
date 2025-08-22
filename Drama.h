@@ -1,11 +1,12 @@
 //
 // ---------------------------------------------------------------------------
-// Assignment 4: Movie Store
+// Assignment 4: MovieStore
 // Group Members: Kyle Williams(2550507) and Nora Osmanova(2550505)
 // Date: 08/12/2025
 //
 // Description:
-// Inherits attributes from Inventory aka Movie class.
+// Inherits attributes from Inventory aka Movie class
+// Has comparison, display and stock management functions
 // ---------------------------------------------------------------------------
 //
 
@@ -19,10 +20,18 @@ class Drama : public Movie {
 public:
     Drama() = default; // Default constructor
     Drama(std::string);
-    bool operator<(const Movie& other) const override; // Finished
-    bool operator==(const Movie& other) const override; // Finished
-    void display(); // Finished
-    void processData(std::string) override; // Finished
+
+    // Comparison operators
+    bool operator<(const Movie& other) const override;
+    bool operator==(const Movie& other) const override;
+
+    // Prints movie info
+    void display();
+
+    // Process input data string to set Drama movie attributes
+    void processData(std::string) override;
+
+    //Stock management
     int getStock() const;
     void decrementStock();
     void incrementStock();

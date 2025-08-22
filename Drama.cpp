@@ -5,18 +5,21 @@
 // Date: 08/12/2025
 //
 // Description:
-// Inherits attributes from Inventory aka Movie class.
+// Inherits attributes from Inventory aka Movie class
+// Has comparison, display and stock management functions
 // ---------------------------------------------------------------------------
 //
-
 #include "Drama.h"
 #include <iostream>
 #include <sstream>
 
+
+// Constructor builds a drama movie from data string
 Drama::Drama(std::string data) {
     processData(data);
 }
 
+// Process a data string and fill in Drama movie attributes
 void Drama::processData(std::string data) {
     // Remove the leading 'D,' if present
     if (data[0] == 'D') {
@@ -50,6 +53,7 @@ void Drama::processData(std::string data) {
     iss >> year;
 }
 
+// Compare two drama mobies by director and then by title
 bool Drama::operator<(const Movie& other) const {
     const Drama* otherDrama = dynamic_cast<const Drama*>(&other);
     if (!otherDrama) {
@@ -65,6 +69,7 @@ bool Drama::operator<(const Movie& other) const {
     return title < otherDrama->title;
 }
 
+//Equality check, director, title adn year must match
 bool Drama::operator==(const Movie& other) const {
     const Drama* otherDrama = dynamic_cast<const Drama*>(&other);
     if (!otherDrama) {
@@ -78,10 +83,12 @@ bool Drama::operator==(const Movie& other) const {
             year == otherDrama->year);
 }
 
+// Print drama movie details
 void Drama::display() {
     std::cout << stock << ", " << director << ", " << title << ", " << year << std::endl;
 }
 
+//Stock access and updates
 int Drama::getStock() const { return stock; }
 void Drama::decrementStock() { if (stock > 0) --stock; }
 void Drama::incrementStock() { ++stock; }

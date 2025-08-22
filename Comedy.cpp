@@ -5,18 +5,20 @@
 // Date: 08/12/2025
 //
 // Description:
-// Inherits attributes from Inventory aka Movie class.
+// Comedy movie class, inherits from Movie. Adds comparison, display
+// and stock management functions
 // ---------------------------------------------------------------------------
 //
 
 #include "Comedy.h"
 #include <iostream>
 #include <sstream>
-
+ // Constructor builds a comedy movie from data string
 Comedy::Comedy(std::string data) {
     processData(data);
 }
 
+//Parse data string and fill comedy attributes
 void Comedy::processData(std::string data) {
     // Remove the leading 'F,' if present
     if (data[0] == 'F') {
@@ -50,6 +52,7 @@ void Comedy::processData(std::string data) {
     iss >> year;
 }
 
+// Compares Comedy movies by title then year
 bool Comedy::operator<(const Movie& other) const {
     const Comedy* otherComedy = dynamic_cast<const Comedy*>(&other);
     if (!otherComedy) {
@@ -65,6 +68,7 @@ bool Comedy::operator<(const Movie& other) const {
     return year < otherComedy->year;
 }
 
+//Equality check director, title and year must match
 bool Comedy::operator==(const Movie& other) const {
     const Comedy* otherComedy = dynamic_cast<const Comedy*>(&other);
     if (!otherComedy) {
@@ -78,11 +82,12 @@ bool Comedy::operator==(const Movie& other) const {
             year == otherComedy->year);
 }
 
+// Print comedy movie details
 void Comedy::display() {
     std::cout << stock << ", " << director << ", " << title << ", " << year << std::endl;
 }
 
-
+// stock access and updates
 int Comedy::getStock() const { return stock; }
 void Comedy::decrementStock() { if (stock > 0) --stock; }
 void Comedy::incrementStock() { ++stock; }

@@ -12,6 +12,7 @@
 
 #include "MovieFactory.h"
 
+// Creates and returns movie subclasses based on genre
 Movie* MovieFactory::createMovie(MovieGenre type) {
     switch (type) {
         case MovieGenre::Comedy:

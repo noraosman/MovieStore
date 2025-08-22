@@ -5,9 +5,7 @@
 // Date: 08/12/2025
 //
 // Description:
-// Implement a hash table to look up customers, add and remove customers.
-// Has a vector bucket to hold customers by their ID number has keys and names/last
-// names as values. Can insert, find, remove and hash
+// Implement a hash table to look up, add and remove  and load customers.
 // ---------------------------------------------------------------------------
 //
 #ifndef CUSTOMERHASHTABLE_H
@@ -20,16 +18,29 @@
 
 class CustomerHashTable {
 public:
+    // creats hash table with given capacity(default size = 101 buckets)
     CustomerHashTable(size_t capacity = 101);
 
+    // Add customer to the table
     bool insert(Customer* customer);
+
+    // Find customer by ID
     Customer* find(int id);
+
+    // Remove customer by ID
     bool remove(int id);
+
+    //Insert customer by reading data from a line
     void insertFromLine(const std::string& line);
+
+    // Print all customers
     void printCustomers() const;
 
 private:
+    // Table of buckets. each bucket is list of customers
     std::vector<std::list<Customer*>> table;
+
+    // Hash function: turns ID into bucket index
     size_t hash(int key) const;
 };
 

@@ -1,11 +1,12 @@
 //
 // ---------------------------------------------------------------------------
-// Assignment 4: MovieFactory
+// Assignment 4: MovieStore
 // Group Members: Kyle Williams(2550507) and Nora Osmanova(2550505)
 // Date: 08/12/2025
 //
 // Description:
-// Inherits attributes from Inventory aka Movie class.
+// Comedy movie class, inherits from Movie. Adds comparison, display
+// and stock management functions
 // ---------------------------------------------------------------------------
 //
 
@@ -19,10 +20,18 @@ class Comedy : public Movie {
 public:
     Comedy() = default; // Default constructor
     Comedy(std::string);
-    bool operator<(const Movie& other) const override; // Finished
-    bool operator==(const Movie& other) const override; // Finished
-    void display(); // Finished
-    void processData(std::string) override; // Finished
+
+    // Comparison operators
+    bool operator<(const Movie& other) const override;
+    bool operator==(const Movie& other) const override;
+
+    // Prints movie info
+    void display();
+
+    // Processes input data
+    void processData(std::string) override;
+
+    //Stock management
     int getStock() const;
     void decrementStock();
     void incrementStock();
