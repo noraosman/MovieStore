@@ -17,6 +17,14 @@
 CustomerHashTable::CustomerHashTable(size_t capacity)
     : table(capacity) {}
 
+CustomerHashTable::~CustomerHashTable() {
+    for (auto& bucket : table) {
+        for (auto& customer : bucket) {
+            delete customer;
+        }
+    }
+}
+
 //Insert  a customer into the table, return true if successful,
 // return false if it already exists
 bool CustomerHashTable::insert(Customer* customer) {

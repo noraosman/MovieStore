@@ -20,6 +20,7 @@ class CustomerHashTable {
 public:
     // creats hash table with given capacity(default size = 101 buckets)
     CustomerHashTable(size_t capacity = 101);
+    ~CustomerHashTable();
 
     // Add customer to the table
     bool insert(Customer* customer);
