@@ -12,7 +12,7 @@
 // Classic movies are identified by Classic Key which identified by release date and actor
 // Can do insertion, lookup, and a method to print all inventories
 // ---------------------------------------------------------------------------
-#ifndef INVENTORY_H
+
 #include "Inventory.h"
 #include <iostream>
 #include <tuple>

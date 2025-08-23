@@ -62,6 +62,14 @@ void Borrow::execute(Store& store, CustomerHashTable& customers) {
     }
 
     if (success) {
-        customer->addHistory("Borrowed: " + std::string(1, genre) + " " + title);
+    std::string movieInfo;
+    if (genre == 'C') {
+        Classic* movie = store.getInventory().findClassic(year, month, majorActor);
+        std::string movieTitle = movie ? movie->getTitle() : "";
+        movieInfo = "C " + movieTitle;
+    } else {
+        movieInfo = std::string(1, genre) + " " + title;
     }
+    customer->addHistory("Borrowed: " + movieInfo);
+}
 }

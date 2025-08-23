@@ -12,6 +12,7 @@
 #include "Customer.h"
 #include <iostream>
 #include "Movie.h"
+
 //Creates a customer with ID, last name and first name
 Customer::Customer(int id, std::string last, std::string first) {
     this->id = id;
@@ -40,6 +41,7 @@ void Customer::printHistory() const {
     for (const auto& rec : history) {
         std::cout << rec << std::endl;
     }
+    std::cout << std::endl;
 }
 
 //Adds a movie to borrowed list

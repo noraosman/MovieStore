@@ -43,6 +43,8 @@ public:
     void addDrama(const Drama& drama);
     void addClassic(const Classic& classic);
 
+    Inventory& getInventory() { return inventory; }
+
 private:
     Inventory inventory;
 };

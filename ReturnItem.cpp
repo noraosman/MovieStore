@@ -74,6 +74,15 @@ void ReturnItem::execute(Store& store, CustomerHashTable& customers) {
         success = store.returnClassic(year, month, majorActor, customer);
     }
     if (success) {
-        customer->addHistory("Returned: " + std::string(1, genre) + " " + title);
+    std::string movieInfo;
+    if (genre == 'C') {
+        Classic* movie = store.getInventory().findClassic(year, month, majorActor);
+        std::string movieTitle = movie ? movie->getTitle() : "";
+        movieInfo = "C " + movieTitle;
+    } else {
+        movieInfo = std::string(1, genre) + " " + title;
     }
+    customer->addHistory("Returned: " + movieInfo);
+}
+
 }
