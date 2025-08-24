@@ -101,7 +101,7 @@ bool Classic::operator==(const Movie& other) const {
 }
 
 //Print classic movie details
-void Classic::display() {
+void Classic::display() const {
     std::cout << stock << ", " << director << ", " << title << ", "
               << majorActorName << " " << releaseMonth << " " << year
               << std::endl;

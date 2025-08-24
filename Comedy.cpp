@@ -83,7 +83,7 @@ bool Comedy::operator==(const Movie& other) const {
 }
 
 // Print comedy movie details
-void Comedy::display() {
+void Comedy::display() const {
     std::cout << stock << ", " << director << ", " << title << ", " << year << std::endl;
 }
 

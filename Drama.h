@@ -26,7 +26,7 @@ public:
     bool operator==(const Movie& other) const override;
 
     // Prints movie info
-    void display();
+    void display() const override;
 
     // Process input data string to set Drama movie attributes
     void processData(std::string) override;

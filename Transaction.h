@@ -20,7 +20,7 @@
 
 class Transaction {
 public:
-virtual ~Transaction() = default; // Virtual destructor for proper cleanup of derived classes
+virtual ~Transaction() = default;
 virtual void execute(Store& store, CustomerHashTable& customers) = 0;
 virtual bool processData(const std::string& data) = 0;
 

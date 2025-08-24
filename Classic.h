@@ -28,7 +28,7 @@ public:
     bool operator==(const Movie& other) const override;
 
     //Prints movie info
-    void display();
+    void display() const override;
 
     //Parse data string
     void processData(std::string) override;
